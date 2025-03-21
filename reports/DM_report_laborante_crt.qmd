@@ -1,0 +1,143 @@
+---
+title: "DM report: CRT"
+date: "`r Sys.Date()`"
+cover: static/ki_logo_vert_rgb.png
+editor: source
+format:
+  pdf:
+    documentclass: scrartcl
+    template-partials:
+      - "static/before-body.tex"
+      - "static/_titlepage.tex"
+    include-in-header: 
+      - "static/in-header.tex"
+    toc: true
+    toc-depth: 3
+    toc-title: Contents
+    lof: false
+    lot: true
+    cap-location: top
+    number-sections: true
+    colorlinks: false
+    keep-tex: false
+bibliography: static/references.bib
+csl: static/bmj.csl
+link-citations: true
+link-bibliography: true
+nocite: '@*'
+knitr:
+  opts_chunk: 
+    dev: cairo_pdf
+    collapse: true
+    comment: "" 
+    echo: FALSE
+    include: TRUE
+    warning: FALSE
+    message: FALSE
+    R.options:
+      knitr.graphics.auto_pdf: true
+---
+
+```{r}
+#| label: set-up-load-data
+options(knitr.kable.NA = "")
+
+# load packages, globals and project specific functions
+source(here::here("setup/setup.R"))
+
+# load data
+load(here("data/clean-data/data.RData"))
+
+# load workbook to write tables to Excel
+wb <- loadWorkbook(here("output/tabs/tables.xlsx"))
+sheets <- names(wb)
+```           
+
+\newpage
+
+# Data
+
+## Data sources
+
+The following registries were linked using the Swedish personal identity number (PIN)[@pin]: 
+
+- The Swedish Heart Failure Registry (SwedeHF), an ongoing nationwide quality registry started in 2000, 
+that includes in- and out-hospital patients with HF, regardless of EF and previous history of HF[@swedehf]. Around 80 variables are recorded at 
+discharge from hospital or at the outpatient visit, i.e. index date, and entered into an electronic database managed by the Uppsala Clinical Research 
+Center (Uppsala, Sweden). Up to April 2017 the only inclusion criterion was a clinical diagnosis of HF, which was thereafter defined according to the ICD-10 
+codes I50.0, I50.1, I50.9, I42.0, I42.6, I42.7, I25.5, I11.0, I13.0, I13.2. In 2023, 69 of 76 Swedish hospitals enrolled patients in SwedeHF, which had a 59% coverage of the prevalent HF population in Sweden[@annualreport]. For this project SHFDB version 4.2.2 was used, see https://kiheartfailure.github.io/shfdb4/. 
+- The ICD/PM Registry provided information on date of CRT.
+- The National Patient Register (The National Board of Health and Welfare) provided information on comorbidities and the hospitalization outcomes.
+- The National Prescribed Drug Register (The National Board of Health and Welfare) provided information on the medications.
+- The Cause of Death Register[@dors] (The National Board of Health and Welfare) for outcomes 
+death.
+- Longitudinal integrated database for health insurance and labour market studies (LISA)[@lisa].
+and the Register of the Total Population (Statistics Sweden) provided information on the socio-economic factors.
+
+## Ethics and Informed consent
+
+The study was approved by the Swedish Ethical Review Authority, dnr 2021-04326 and amendment dnr 2021-06332-02, 2023-05468-02, 2024-02299-02. 
+Individual consent was not required, but patients were informed of entry into SwedeHF and able to opt‐out.
+
+\newpage
+
+## Inclusion/exclusion criteria
+
+```{r}
+#| label: tbl-flow
+#| cache: true
+#| cache.comments: false
+#| tbl-cap: "Information for flowchart"
+#| tbl-pos: "H"
+
+default_kable(flow) %>%
+  row_spec(c(1, 11), bold = T) %>%
+  column_spec(1, width = "15cm")
+```
+
+First patient in: `r min(rsdata$indexdtm)` and last patient in: `r max(rsdata$indexdtm)` from approximately `r rsdata %>% distinct(shf_centre) %>% count() %>% pull(n)` enrolling centers.
+
+Note that a control can receive CRT during follow-up and a CRT patient can be explanted (ITT). A sensitivity analyses can be performed where controls with CRT during follow-up are excluded (see variable time_crt_shf). However, note that there is data from the ICD/PM Registry only until 2022-08-31 and in that case the follow-up period needs to be cut at this time point instead of 2023-12-31. This will require recalculating the outcomes. 
+
+## Definitions
+
+{{< include src/vars.qmd >}}
+
+\clearpage
+
+### Baseline (index date)
+
+Baseline is defined as date of CRT for the CRT population and date of discharge/visit for the registration in SwedeHF for the controls. 
+If multiple SwedeHF registrations exists, the registration closest to CRT within 1 year before up until 30 days after CRT is selected. 
+
+### Follow-up
+
+Follow-up data were censored at 2023-12-31, emigration from Sweden or 
+at death from other causes than the event. 
+
+IMPORTANT! If you cut the follow-up period (for example restrict it to 3 years or cut it due to the follow-up of the ICD/PM Registry) I need to recalculate sos_out_counthosphf (number of HF hospitalizations) if you are going to use this outcome. Time to first event you can re-calculate yourself.  
+
+### Medications
+
+Medications are derived from dispensed prescriptions up until 14 days after baseline in order to give patients an opportunity to collect new prescriptions from the baseline visit/hospitalization. Patients that die within 14 days from baseline will therefore not have the same opportunity to collect medications. If medications are an integral part of the project perhaps consider moving baseline forward 14 days and exclude patients without 14 days follow-up. In that case I also need to re-calculate sos_out_hosphf. 
+
+# Reproducibility
+
+## R code
+
+The R code for all data handling and statistical analyses are found: 
+
+https://github.com/KIHeartFailure/swedehf-af-crt. 
+
+## R session information {#sessioninfo}
+
+```{r sessinfo}
+sessionInfo()
+```
+
+\clearpage
+
+# References
+
+::: {#refs}
+:::

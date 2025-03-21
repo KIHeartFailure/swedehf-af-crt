@@ -1,0 +1,73 @@
+# Variables for baseline tables -----------------------------------------------
+
+tabvars <- c(
+  # demo
+  "crt",
+  "time_crt_shf",
+  "indexyear",
+  "shf_sex",
+  "shf_age",
+
+  # organizational
+  "shf_qrs",
+  "shf_lbbb",
+  "shf_ef",
+  "sos_durationhf",
+  "shf_followuplocation",
+  "shf_followuphfunit",
+  "shf_nyha",
+  "shf_bpsys",
+  "shf_bpdia",
+  "shf_map",
+  "shf_heartrate",
+  "shf_gfrckdepi",
+  "shf_ntprobnp",
+  # treatments
+  "sos_lm_rasiarni",
+  "sos_lm_bbl",
+  "sos_lm_mra",
+  "sos_lm_loop",
+  "sos_lm_sglt2",
+  "sos_lm_ccb",
+  "sos_lm_antiplatelet",
+  "sos_lm_anticoagulantia",
+  "sos_lm_insulin",
+  "sos_lm_oralantidiabetic",
+  "sos_lm_lipidlowering",
+  "sos_lm_digoxin",
+  "sos_lm_nitrate",
+  "sos_lm_antiarrhythmic",
+  "sos_com_icd",
+  "sos_com_pm",
+  "icdpm_prioricdpm",
+
+  # comorbs
+  "sos_com_diabetes",
+  # "sos_com_renal",
+  "sos_com_af",
+  "sos_com_af_type",
+  "shf_ekg",
+  "sos_com_ihd",
+  "sos_com_hypertension",
+  "sos_com_pad",
+  "sos_com_pci",
+  "sos_com_cabg",
+  "sos_com_stroke",
+  "sos_com_valvular",
+  "sos_com_cancer3y",
+  "sos_com_copd",
+  "sos_com_liver",
+  "sos_com_dementia",
+  "sos_com_bleed",
+  "sos_com_muscoloskeletal3y",
+  "sos_com_renal",
+  # socec
+  "scb_famtype",
+  "scb_child",
+  "scb_education",
+  "scb_dispincome",
+  # outcomes
+  "sos_out_death",
+  "sos_out_deathcv",
+  "sos_out_hosphf"
+)

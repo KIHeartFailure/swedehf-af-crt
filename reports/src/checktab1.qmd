@@ -1,0 +1,13 @@
+```{r}
+#| label: tbl-check
+#| cache: true
+#| cache.comments: false
+#| tbl-cap: "Check variables"
+#| tbl-pos: "H"
+
+tab <- print(tableone::CreateTableOne(vars = setdiff(names(rsdata), c("shf_centre", "lopnr", "sos_deathcause")), 
+                                                     strata = "crt", data = rsdata), 
+             test = F, missing = T, 
+             nonnormal = setdiff(names(rsdata), c("shf_centre", "lopnr", "sos_deathcause")), 
+             minmax = T)
+```
