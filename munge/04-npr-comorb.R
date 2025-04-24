@@ -345,6 +345,27 @@ rsdata <- create_sosvar(
   warnings = FALSE
 )
 
+rsdata <- rsdata %>%
+  mutate(censdtm_sens = pmin(censdtm, ymd("2022-08-31")))
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata %>% filter(sos_source == "sv"),
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = HDIA,
+  type = "out",
+  name = "counthosphf_sens",
+  diakod = global_hficd,
+  noof = TRUE,
+  censdate = censdtm_sens,
+  valsclass = "num",
+  warnings = FALSE
+)
+
+rsdata <- rsdata %>%
+  select(-censdtm_sens)
 
 outcommeta <- metaout
 rm(metaout)

@@ -3,6 +3,7 @@
 tabvars <- c(
   # demo
   "crt",
+  "crt_type",
   "time_crt_shf",
   "indexyear",
   "shf_sex",
@@ -39,7 +40,8 @@ tabvars <- c(
   "sos_lm_antiarrhythmic",
   "sos_com_icd",
   "sos_com_pm",
-  "icdpm_prioricdpm",
+  "icdpm_com_icd",
+  "icdpm_com_pm",
 
   # comorbs
   "sos_com_diabetes",
