@@ -43,7 +43,7 @@ flow <- flow %>%
     N = nrow(rsdata)
   )
 
-# # crt only
+# crt only
 crtdata <- icdpm %>%
   filter(EVENTTYPE == "Intervention" & !PATIENTTYPE %in% c("null", "ILR") &
     INTERVENTYIONTASKTYPE == "Implantation" &

@@ -329,6 +329,22 @@ rsdata <- create_sosvar(
   warnings = FALSE
 )
 
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata %>% filter(sos_source == "sv"),
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = HDIA,
+  type = "out",
+  name = "hosppneumonia",
+  diakod = " J09| J1[0-8]",
+  censdate = censdtm,
+  valsclass = "fac",
+  warnings = FALSE
+)
+
 rsdata <- create_sosvar(
   sosdata = patregrsdata %>% filter(sos_source == "sv"),
   cohortdata = rsdata,

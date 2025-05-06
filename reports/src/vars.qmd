@@ -41,8 +41,7 @@ vars <- vars %>%
     data1 = if_else(str_detect(var, "^shf_") & !var %in% c("shf_age", "shf_sex", "shf_indexyear"), "SwedeHF", NA),
     data2 = case_when(
       str_detect(var, "sos_com_|hosp") & !is.na(Code) ~ paste0("NPR: ", Code),
-      str_detect(var, "sos_lm") ~ paste0("NPDR: ", Code),
-      str_detect(var, "sos_") & is.na(Code) ~ "NPR"
+      str_detect(var, "sos_lm") ~ paste0("NPDR: ", Code)
     ),
     data3 = if_else(str_detect(var, "scb_famtype|scb_education|scb_dispincome"), "LISA", NA),
     data4 = if_else(str_detect(var, "scb_child"), "RTP", NA),

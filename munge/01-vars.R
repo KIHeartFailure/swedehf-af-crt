@@ -71,5 +71,6 @@ tabvars <- c(
   # outcomes
   "sos_out_death",
   "sos_out_deathcv",
-  "sos_out_hosphf"
+  "sos_out_hosphf",
+  "sos_out_hosppneumonia"
 )
