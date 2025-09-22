@@ -150,6 +150,135 @@ rsdata <- create_sosvar(
   valsclass = "fac"
 )
 
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af5yr",
+  stoptime = -5 * 365.25,
+  diakod = " 427D| I48",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af_perm5yr",
+  stoptime = -5 * 365.25,
+  diakod = " I482",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af_parox5yr",
+  stoptime = -5 * 365.25,
+  diakod = " I480",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af_pers5yr",
+  stoptime = -5 * 365.25,
+  diakod = " I481",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
+
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af1yr",
+  stoptime = -365,
+  diakod = " 427D| I48",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af_perm1yr",
+  stoptime = -365,
+  diakod = " I482",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af_parox1yr",
+  stoptime = -365,
+  diakod = " I480",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = DIA_all,
+  type = "com",
+  name = "af_pers1yr",
+  stoptime = -365,
+  diakod = " I481",
+  warnings = FALSE,
+  meta_reg = "NPR",
+  valsclass = "fac"
+)
 rsdata <- create_sosvar(
   sosdata = patregrsdata,
   cohortdata = rsdata,
@@ -340,6 +469,36 @@ rsdata <- create_sosvar(
   type = "out",
   name = "hosppneumonia",
   diakod = " J09| J1[0-8]",
+  censdate = censdtm,
+  valsclass = "fac",
+  warnings = FALSE
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata %>% filter(sos_source == "sv"),
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = HDIA,
+  type = "out",
+  name = "hospgutractinfection",
+  diakod = " N10| N11| N12| N136| N30| N33| N34| N370| N390| N41| N45| N481| N482| N49| N51| N7",
+  censdate = censdtm,
+  valsclass = "fac",
+  warnings = FALSE
+)
+
+rsdata <- create_sosvar(
+  sosdata = patregrsdata %>% filter(sos_source == "sv"),
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  diavar = HDIA,
+  type = "out",
+  name = "hosptrauma",
+  diakod = " S| T0| T1[0-4]",
   censdate = censdtm,
   valsclass = "fac",
   warnings = FALSE

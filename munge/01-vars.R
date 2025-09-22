@@ -72,5 +72,7 @@ tabvars <- c(
   "sos_out_death",
   "sos_out_deathcv",
   "sos_out_hosphf",
-  "sos_out_hosppneumonia"
+  "sos_out_hosppneumonia", 
+  "sos_out_hospgutractinfection", 
+  "sos_out_hosptrauma"
 )

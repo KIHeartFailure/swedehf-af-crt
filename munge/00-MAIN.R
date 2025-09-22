@@ -38,7 +38,7 @@ save(
 )
 
 write_dta(rsdata,
-          path = here("data/clean-data/rsdata422_crt_20250424.dta"),
+          path = here(paste0("data/clean-data/rsdata422_crt_", Sys.Date(), ".dta")),
           version = 14
 )
 
