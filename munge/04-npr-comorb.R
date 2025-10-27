@@ -520,6 +520,21 @@ rsdata <- create_sosvar(
   warnings = FALSE
 )
 
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  opvar = OP_all,
+  type = "out",
+  name = "hisablation",
+  opkod = " FPB20| FPB22| FPE00| FPE20",
+  censdate = censdtm,
+  valsclass = "fac",
+  warnings = FALSE
+)
+
 rsdata <- rsdata %>%
   mutate(censdtm_sens = pmin(censdtm, ymd("2022-08-31")))
 
