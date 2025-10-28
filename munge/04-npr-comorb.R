@@ -440,6 +440,34 @@ rsdata <- create_sosvar(
   valsclass = "fac",
   warnings = FALSE
 )
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  opvar = OP_all,
+  type = "com",
+  name = "afablation",
+  opkod = " FPB32| DF003| DF001",
+  # stoptime = -5 * 365.25,
+  valsclass = "fac",
+  warnings = FALSE
+)
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  opvar = OP_all,
+  type = "com",
+  name = "cardioversion",
+  opkod = " DF026| DF027",
+  # stoptime = -5 * 365.25,
+  valsclass = "fac",
+  warnings = FALSE
+)
 
 # outcomes
 
@@ -535,6 +563,36 @@ rsdata <- create_sosvar(
   warnings = FALSE
 )
 
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  opvar = OP_all,
+  type = "out",
+  name = "afablation",
+  opkod = " FPB32| DF003| DF001",
+  censdate = censdtm,
+  # stoptime = -5 * 365.25,
+  valsclass = "fac",
+  warnings = FALSE
+)
+rsdata <- create_sosvar(
+  sosdata = patregrsdata,
+  cohortdata = rsdata,
+  patid = lopnr,
+  indexdate = indexdtm,
+  sosdate = INDATUM,
+  opvar = OP_all,
+  type = "out",
+  name = "cardioversion",
+  censdate = censdtm,
+  opkod = " DF026| DF027",
+  # stoptime = -5 * 365.25,
+  valsclass = "fac",
+  warnings = FALSE
+)
 rsdata <- rsdata %>%
   mutate(censdtm_sens = pmin(censdtm, ymd("2022-08-31")))
 
